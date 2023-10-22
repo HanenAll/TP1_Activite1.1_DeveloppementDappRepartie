@@ -1,7 +1,6 @@
+
 package ServerPackage;
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,16 +19,15 @@ public class Server2 {
           // les 2 methode inputstream() et outputstream() sont 2 methodes d'echange de données avec le client
           InputStream is = socket.getInputStream(); // elle reçoit le contenue de 'os' du client
           OutputStream os = socket.getOutputStream(); 
-          InputStreamReader isr=new InputStreamReader(is); // InputStreamReader lu 4 octect , elle fait appel 4 fois au InputStream
-          BufferedReader br = new BufferedReader(isr);//Bufferedreader collecte toute la chaine
+          
           int nb=is.read(); //is.read() recupere le contenu de 'os' du client et le met dans l'attribut nb
-          String op=br.readLine(); //br.readline() elle lu l'operateur
+          int choice= is.read();
           int res;
-          switch(op) {
-          case "+":res=nb+5;break;
-          case"-":res=nb-5;break;
-          case"*": res=nb*5;break;
-          case"/":res=nb/5;break;
+          switch(choice) {
+          case 1:res=nb+5;break;
+          case 2:res=nb-5;break;
+          case 3: res=nb*5;break;
+          case 4:res=nb/5;break;
           default: res=0;
           }
           os.write(res); //elle renvoi la réponse au client
